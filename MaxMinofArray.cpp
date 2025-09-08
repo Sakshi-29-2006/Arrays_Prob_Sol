@@ -21,31 +21,60 @@ class Array{
 			}
 			cout<<endl;
 		}
-		//function for finding minimum element of an array
-		void min_array(){
-			int minimum = arr1[0];
-			for(int i = 0;i < size;i++){
-				if(arr1[i] < minimum){
-					minimum = arr1[i];
+		// function for finding minimum and maximum element of an array
+	    void findMinMax() {
+	        int min_ele, max_ele;
+	        int i;
+	
+	        // If there are even number of elements
+	        if (size % 2 == 0) {
+	            if (arr1[0] < arr1[1]) {
+	                min_ele = arr1[0];
+	                max_ele = arr1[1];
+	            } 
+				else {
+	                min_ele = arr1[1];
+	                max_ele = arr1[0];
+	            }
+	            i = 2; // start from 3rd element
+	        } 
+			else {
+	            // If there are odd number of elements
+	            min_ele = max_ele = arr1[0];
+	            i = 1; // we start from 2nd element
+	        }
+	
+	        // Looping through pairs
+	        while (i < size - 1) {
+	            if (arr1[i] < arr1[i + 1]) {
+	                if (arr1[i] < min_ele){
+						min_ele = arr1[i];
+					}	
+	                if (arr1[i + 1] > max_ele){
+						max_ele = arr1[i + 1];
+					}
+	            } 
+				else {
+	                if (arr1[i + 1] < min_ele){
+						min_ele = arr1[i + 1];
+					}
+	                if (arr1[i] > max_ele){
+						max_ele = arr1[i];
 				}
-			}
-			cout<<"Minimum of array: "<<minimum<<endl;
-		}
-		//function for finding maximum element of an array
-		void max_array(){
-			int maximum = arr1[0];
-			for(int i = 0;i < size;i++){
-				if(arr1[i] > maximum){
-					maximum = arr1[i];
-				}
-			}
-			cout<<"Maximum of array: "<<maximum<<endl;
-		}
+	            }
+	            i += 2; // move to next pair
+	        }
+	
+	        cout << "Minimum of array: " << min_ele << endl;
+	        cout << "Maximum of array: " << max_ele << endl;
+	    }
 };
 int main(){
 	//creating object of class Array
 	Array a1;
 	a1.createArray();
-	a1.min_array();
-	a1.max_array();
+	a1.displayArray();
+	a1.findMinMax();
 }
+}
+
